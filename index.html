@@ -5,15 +5,16 @@
     </body>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
         const root = ReactDOM.createRoot(document.getElementById("root"));
-        const h3 = React.createElement("h3", {
-            onMouseEnter: () => console.log("mouse enter")
-        }, "hello");
-        const btn = React.createElement("button", {
-            onClick: () => console.log("test")
-        }, "Click");
+        const Title = () => (
+            <h3 id="title" onMouseEnter={() => console.log("mouseenter")}>Hello</h3>
+        );
+        const Button = () => (
+            <button onClick={() => console.log("test")}>Click</button>
+        );
         // const container = React.createElement("div", null, [span, btn]);
-        root.render([h3, btn]);
+        root.render([<Title />, <Button />]);
     </script>
 </html>
