@@ -18,41 +18,41 @@
         // );
         function App() {
             const [amount, setAmount] = React.useState(0);
-            const [flipped, setFlipped] = React.useState(false);
+            const [inverted, setInverted] = React.useState(false);
             const onChange = (event) => {
                 setAmount(event.target.value);
             }
             const reset = () => setAmount(0);
-            const onFlip = () => {
+            const onInvert = () => {
                 reset();
-                setFlipped((current) => !current);
+                setInverted((current) => !current);
             }
             return (
                 <div>
                     <h1>변환기</h1>
                     <label htmlFor="minutes">Minutes</label>
                     <input
-                        value={flipped ? amount * 60 : amount}
+                        value={inverted ? amount * 60 : amount}
                         id="minutes"
                         placeholder="분"
                         type="number"
                         onChange={onChange}
-                        disabled={flipped === true}
+                        disabled={inverted === true}
                     />
                     <h4>분 : {amount}</h4>
                     <br/>
                     <label htmlFor="hours">Hours</label>
                     <input
-                        value={flipped ? amount : Math.round(amount / 60)}
+                        value={inverted ? amount : Math.round(amount / 60)}
                         id="hours"
                         placeholder="시간"
                         type="number"
-                        disabled={flipped === false}
+                        disabled={inverted === false}
                         onChange={onChange}
                     />
                     <br/>
                     <button onClick={reset}>초기화</button>
-                    <button onClick={onFlip}>교체</button>
+                    <button onClick={onInvert}>{inverted ? "시간" : "분"}</button>
                 </div>
             )
         }
