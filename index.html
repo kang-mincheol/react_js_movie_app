@@ -15,6 +15,11 @@
             <button onClick={() => console.log("test")}>Click</button>
         );
         // const container = React.createElement("div", null, [span, btn]);
-        root.render([<Title />, <Button />]);
+        root.render(
+            <div>
+                <Title />
+                <Button />
+            </div>
+        );
     </script>
 </html>
