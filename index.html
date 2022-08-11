@@ -8,18 +8,33 @@
     <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
         const root = ReactDOM.createRoot(document.getElementById("root"));
-        const Title = () => (
-            <h3 id="title" onMouseEnter={() => console.log("mouseenter")}>Hello</h3>
-        );
-        const Button = () => (
-            <button onClick={() => console.log("test")}>Click</button>
-        );
-        // const container = React.createElement("div", null, [span, btn]);
-        root.render(
+        let counter = 0;
+        function countUp() {
+            counter = counter + 1;
+            root.render(
             <div>
                 <Title />
                 <Button />
             </div>
         );
+        }
+
+        const Title = () => (
+            <h3>TotalClick : {counter}</h3>
+        );
+        const Button = () => (
+            <button onClick={countUp}>Click</button>
+        );
+        function render() {
+            root.render(
+                <div>
+                    <Title />
+                    <Button />
+                </div>
+            );
+        }
+        // const container = React.createElement("div", null, [span, btn]);
+        render();
+
     </script>
 </html>
