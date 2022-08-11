@@ -17,15 +17,39 @@
         //     <button onClick={countUp}>Click</button>
         // );
         function App() {
-            const [counter, setCounter] = React.useState(0);
-            const onClick = () => {
-                setCounter((data) => data + 1);
+            const [minutes, setMinutes] = React.useState(0);
+            const [flipped, setFlipped] = React.useState(false);
+            const onChange = (event) => {
+                // console.log(event.target.value);
+                setMinutes(event.target.value);
             }
-
+            const reset = () => setMinutes(0);
+            const onFlip = () => setFlipped((current) => !current);
             return (
                 <div>
-                    <h3>Total clicks: {counter}</h3>
-                    <button onClick={onClick}>Click</button>
+                    <h1>변환기</h1>
+                    <label htmlFor="minutes">Minutes</label>
+                    <input
+                        value={minutes}
+                        id="minutes"
+                        placeholder="분"
+                        type="number"
+                        onChange={onChange}
+                        disabled={flipped === true}
+                    />
+                    <h4>시간 : {minutes}</h4>
+                    <br/>
+                    <label htmlFor="hours">Hours</label>
+                    <input
+                        value={minutes / 60}
+                        id="hours"
+                        placeholder="시간"
+                        type="number"
+                        disabled={flipped === false}
+                    />
+                    <br/>
+                    <button onClick={reset}>초기화</button>
+                    <button onClick={onFlip}>교체</button>
                 </div>
             )
         }
