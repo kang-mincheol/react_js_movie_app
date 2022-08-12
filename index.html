@@ -6,18 +6,19 @@
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15.8.1/prop-types.js"></script>
     <script type="text/babel">
         const root = ReactDOM.createRoot(document.getElementById("root"));
 
-        function Btn({text, changeValue}) {
+        function Btn({text, fontSize = 14}) {
             console.log(text, "was");
             return (
                 <button
-                    onClick={changeValue}
                     style={{
                         backgroundColor: "tomato",
                         color: "white",
                         padding: "10px 20px",
+                        fontSize: fontSize,
                         borderRadius:10,
                         border: 0
                     }}
@@ -25,15 +26,16 @@
             );
         }
 
-        const MemorizedBtn = React.memo(Btn);
+        Btn.propTypes = {
+            text: PropTypes.string.isRequired,
+            fontSize: PropTypes.number
+        }
 
         function App() {
-            const [value, setValue] = React.useState("Save Changes");
-            const changeValue = () => setValue("Revert Changes");
             return (
                 <div>
-                    <MemorizedBtn text={value} changeValue={changeValue}/>
-                    <MemorizedBtn text="Continue"/>
+                    <Btn text="Save Changes" fontSize={18} />
+                    <Btn text="test btn" />
                 </div>
             )
         }
