@@ -9,23 +9,31 @@
     <script type="text/babel">
         const root = ReactDOM.createRoot(document.getElementById("root"));
 
-        function Btn(props) {
-            console.log(props);
-            return <button style={{
-                backgroundColor: "tomato",
-                color: "white",
-                padding: "10px 20px",
-                borderRadius:10,
-                border: 0
-            }}>{props.value}</button>
+        function Btn({text, changeValue}) {
+            console.log(text, "was");
+            return (
+                <button
+                    onClick={changeValue}
+                    style={{
+                        backgroundColor: "tomato",
+                        color: "white",
+                        padding: "10px 20px",
+                        borderRadius:10,
+                        border: 0
+                    }}
+                >{text}</button>
+            );
         }
 
+        const MemorizedBtn = React.memo(Btn);
+
         function App() {
-            
+            const [value, setValue] = React.useState("Save Changes");
+            const changeValue = () => setValue("Revert Changes");
             return (
                 <div>
-                    <Btn value="Save Changes"/>
-                    <Btn value="Continue"/>
+                    <MemorizedBtn text={value} changeValue={changeValue}/>
+                    <MemorizedBtn text="Continue"/>
                 </div>
             )
         }
