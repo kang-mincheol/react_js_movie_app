@@ -16,7 +16,7 @@
         // const Button = () => (
         //     <button onClick={countUp}>Click</button>
         // );
-        function App() {
+        function MinutesToHours() {
             const [amount, setAmount] = React.useState(0);
             const [inverted, setInverted] = React.useState(false);
             const onChange = (event) => {
@@ -29,7 +29,6 @@
             }
             return (
                 <div>
-                    <h1>변환기</h1>
                     <label htmlFor="minutes">Minutes</label>
                     <input
                         value={inverted ? amount * 60 : amount}
@@ -53,6 +52,26 @@
                     <br/>
                     <button onClick={reset}>초기화</button>
                     <button onClick={onInvert}>{inverted ? "시간" : "분"}</button>
+                </div>
+            )
+        }
+
+        function KmToMiles() {
+            return <h3>KM to M</h3>;
+        }
+
+        function App() {
+            const [index, setIndex] = React.useState(0);
+            const onSelect = (event) => {
+                setIndex(event.target.value);
+            }
+            return (
+                <div>
+                    <h1>변환기</h1>
+                    <select value={index} onChange={onSelect}>
+                        <option value="0">Minus & Hours</option>
+                        <option value="1">Km & Miles</option>
+                    </select>
                 </div>
             )
         }
