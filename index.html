@@ -9,75 +9,27 @@
     <script type="text/babel">
         const root = ReactDOM.createRoot(document.getElementById("root"));
 
-
-        // const Title = () => (
-        //     <h3>TotalClick : {counter}</h3>
-        // );
-        // const Button = () => (
-        //     <button onClick={countUp}>Click</button>
-        // );
-        function MinutesToHours() {
-            const [amount, setAmount] = React.useState(0);
-            const [inverted, setInverted] = React.useState(false);
-            const onChange = (event) => {
-                setAmount(event.target.value);
-            }
-            const reset = () => setAmount(0);
-            const onInvert = () => {
-                reset();
-                setInverted((current) => !current);
-            }
-            return (
-                <div>
-                    <label htmlFor="minutes">Minutes</label>
-                    <input
-                        value={inverted ? amount * 60 : amount}
-                        id="minutes"
-                        placeholder="분"
-                        type="number"
-                        onChange={onChange}
-                        disabled={inverted === true}
-                    />
-                    <h4>분 : {amount}</h4>
-                    <br/>
-                    <label htmlFor="hours">Hours</label>
-                    <input
-                        value={inverted ? amount : Math.round(amount / 60)}
-                        id="hours"
-                        placeholder="시간"
-                        type="number"
-                        disabled={inverted === false}
-                        onChange={onChange}
-                    />
-                    <br/>
-                    <button onClick={reset}>초기화</button>
-                    <button onClick={onInvert}>{inverted ? "시간" : "분"}</button>
-                </div>
-            )
-        }
-
-        function KmToMiles() {
-            return <h3>KM to M</h3>;
+        function Btn(props) {
+            console.log(props);
+            return <button style={{
+                backgroundColor: "tomato",
+                color: "white",
+                padding: "10px 20px",
+                borderRadius:10,
+                border: 0
+            }}>{props.value}</button>
         }
 
         function App() {
-            const [index, setIndex] = React.useState("0");
-            const onSelect = (event) => {
-                setIndex(event.target.value);
-            }
+            
             return (
                 <div>
-                    <h1>변환기</h1>
-                    <select value={index} onChange={onSelect}>
-                        <option value="0">Minus & Hours</option>
-                        <option value="1">Km & Miles</option>
-                    </select>
-                    {index === "0" ? <MinutesToHours /> : null}
-                    {index === "1" ? <KmToMiles /> : null}
+                    <Btn value="Save Changes"/>
+                    <Btn value="Continue"/>
                 </div>
             )
         }
-        // const container = React.createElement("div", null, [span, btn]);
+
         root.render(<App/>);
 
     </script>
